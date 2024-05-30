@@ -1,6 +1,6 @@
 mod api;
 mod client;
-mod models;
+pub mod models;
 
 use api::{Autocomplete, Company, JobTitle, Location, Person, School, Skill, IP};
 use client::{PDLClient, PDLError};
