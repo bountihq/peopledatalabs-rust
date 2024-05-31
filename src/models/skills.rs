@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{models::common::BaseParams, PDLError};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SkillBaseParams {
     /// Skill that is used as the seed for enrichment
     #[serde(rename = "skill", default)]
@@ -12,7 +12,7 @@ pub struct SkillBaseParams {
     pub titlecase: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SkillParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -30,13 +30,13 @@ impl SkillParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SkillResponse {
     pub status: i32,
     pub data: SkillResult,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SkillResult {
     pub cleaned_skill: String,
     pub similar_skills: Vec<String>,

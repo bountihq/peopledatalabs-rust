@@ -5,7 +5,7 @@ use crate::{
     PDLError,
 };
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct SchoolParams {
     #[serde(rename = "name", default)]
     pub name: Option<String>,
@@ -17,7 +17,7 @@ pub struct SchoolParams {
     pub profile: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CleanSchoolParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -41,7 +41,7 @@ impl CleanSchoolParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Location {
     pub name: Option<String>,
     pub locality: Option<String>,
@@ -50,7 +50,7 @@ pub struct Location {
     pub continent: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CleanSchoolResponse {
     /// See https://docs.peopledatalabs.com/docs/output-response-cleaner-apis#school-cleaner-api-response for more information
     pub status: i32,

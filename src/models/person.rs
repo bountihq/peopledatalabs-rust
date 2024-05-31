@@ -181,7 +181,7 @@ impl PersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct EnrichPersonParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -199,14 +199,14 @@ impl EnrichPersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct EnrichPersonResponse {
     pub status: i32,
     pub likelihood: i32,
     pub data: Person,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkEnrichPersonParams {
     #[serde(skip_serializing_if = "Option::is_none", default)]
     pub requires: Option<String>,
@@ -222,7 +222,7 @@ impl BulkEnrichPersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkEnrichSinglePersonParams {
     pub params: PersonParams,
     #[serde(skip_serializing_if = "Option::is_none", default)]
@@ -236,7 +236,7 @@ impl BulkEnrichSinglePersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkEnrichPersonResponse {
     #[serde(flatten)]
     pub data: Option<Vec<EnrichPersonResponse>>,
@@ -245,7 +245,7 @@ pub struct BulkEnrichPersonResponse {
     pub metadata: Option<PersonMetadata>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct IdentifyPersonParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -264,20 +264,20 @@ impl IdentifyPersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IdentifyPersonResponse {
     pub status: i32,
     pub matches: Vec<PersonMatch>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct PersonMatch {
     pub data: Person,
     pub match_score: i32,
     pub matched_on: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RetrievePersonParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -295,14 +295,14 @@ impl RetrievePersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RetrievePersonResponse {
     pub status: i32,
     pub data: Person,
     pub billed: bool,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkRetrievePersonParams {
     #[serde(flatten, skip_serializing_if = "Option::is_none")]
     pub base_params: Option<BaseParams>,
@@ -328,7 +328,7 @@ impl BulkRetrievePersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkRetrieveSinglePersonParams {
     pub id: String, // The ID of a person
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -344,7 +344,7 @@ impl BulkRetrieveSinglePersonParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct BulkRetrievePersonResponse {
     pub status: i32,
     pub data: Person,
@@ -354,7 +354,7 @@ pub struct BulkRetrievePersonResponse {
 
 pub type PersonMetadata = HashMap<String, String>;
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SearchPersonResponse {
     pub status: i32,
 
@@ -366,14 +366,14 @@ pub struct SearchPersonResponse {
     pub scroll_token: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct PersonErrorInfo {
     #[serde(rename = "type")]
     pub error_type: Vec<String>,
     pub message: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Person {
     pub id: Option<String>,
     pub dataset_version: Option<String>,
@@ -454,13 +454,13 @@ pub struct Person {
     pub version_status: Option<VersionStatus>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Email {
     pub address: Option<String>,
     pub type_: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct StreetAddress {
     pub name: Option<String>,
     pub locality: Option<String>,
@@ -474,7 +474,7 @@ pub struct StreetAddress {
     pub geo: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Experience {
     pub company: Option<Company>,
     pub location_names: Option<Vec<String>>,
@@ -484,7 +484,7 @@ pub struct Experience {
     pub is_primary: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Company {
     pub name: Option<String>,
     pub size: Option<String>,
@@ -499,7 +499,7 @@ pub struct Company {
     pub website: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Location {
     pub name: Option<String>,
     pub locality: Option<String>,
@@ -513,7 +513,7 @@ pub struct Location {
     pub geo: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Title {
     pub name: Option<String>,
     pub role: Option<String>,
@@ -521,7 +521,7 @@ pub struct Title {
     pub levels: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Education {
     pub school: Option<School>,
     pub end_date: Option<String>,
@@ -532,7 +532,7 @@ pub struct Education {
     pub minors: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct School {
     pub name: Option<String>,
     pub type_: Option<String>,
@@ -545,7 +545,7 @@ pub struct School {
     pub domain: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Profile {
     pub network: Option<String>,
     pub id: Option<String>,
@@ -553,7 +553,7 @@ pub struct Profile {
     pub username: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct VersionStatus {
     pub status: Option<String>,
     pub contains: Option<Vec<String>>,

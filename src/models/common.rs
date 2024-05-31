@@ -13,7 +13,7 @@ pub struct BaseParams {
     pub size: Option<i32>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct AdditionalParams {
     /// The minimum likelihood score a response must possess in order to return a 200.
     #[serde(rename = "min_likelihood", default)]
@@ -33,7 +33,7 @@ pub struct AdditionalParams {
     pub include_if_matched: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct SearchBaseParams {
     /// An Elasticsearch (v7.7) query.
     #[serde(rename = "query", default)]
@@ -55,7 +55,7 @@ pub struct SearchBaseParams {
     pub titlecase: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct SearchParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,

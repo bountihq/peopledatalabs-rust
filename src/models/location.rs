@@ -5,14 +5,14 @@ use crate::{
     PDLError,
 };
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocationParams {
     /// The raw location to process
     #[serde(rename = "location", default)]
     pub location: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CleanLocationParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -33,7 +33,7 @@ impl CleanLocationParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CleanLocationResponse {
     /// See https://docs.peopledatalabs.com/docs/output-response-cleaner-apis#location-cleaner-api-response for more information
     pub status: i32,

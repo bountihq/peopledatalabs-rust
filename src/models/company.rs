@@ -7,7 +7,7 @@ use crate::{
     PDLError,
 };
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct CompanyParams {
     /// The PDL ID of the company
     #[serde(rename = "pdl_id", default)]
@@ -67,7 +67,7 @@ impl CompanyParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct EnrichCompanyParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -119,7 +119,7 @@ impl BulkEnrichSingleCompanyParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct CleanCompanyParams {
     /// The name of the company
     #[serde(rename = "name", default)]
@@ -141,7 +141,7 @@ impl CleanCompanyParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SearchCompanyResponse {
     pub status: i32,
     pub data: Vec<CompanyResponse>,
@@ -153,14 +153,14 @@ pub struct SearchCompanyResponse {
     pub error: Option<CompanyError>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CompanyError {
     #[serde(rename = "type")]
     pub error_type: Vec<String>,
     pub message: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Naics {
     pub naics_code: Option<String>,
     pub sector: Option<String>,
@@ -170,7 +170,7 @@ pub struct Naics {
     pub national_industry: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Sic {
     pub sic_code: Option<String>,
     pub major_group: Option<String>,
@@ -178,7 +178,7 @@ pub struct Sic {
     pub industry_sector: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Location {
     pub name: Option<String>,
     pub locality: Option<String>,
@@ -192,13 +192,13 @@ pub struct Location {
     pub geo: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct TopUsEmployeeMetros {
     pub current_head_count: Option<i32>,
     pub twelve_moth_growth_rate: Option<f32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RecentExecHires {
     pub joined_date: Option<String>,
     pub pdl_id: Option<String>,
@@ -213,7 +213,7 @@ pub struct RecentExecHires {
     pub previous_company_job_title_levels: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RecentExecDepartures {
     pub departed_date: Option<String>,
     pub pdl_id: Option<String>,
@@ -228,7 +228,7 @@ pub struct RecentExecDepartures {
     pub new_company_job_title_levels: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct FundingDetails {
     pub funding_round_date: Option<String>,
     pub funding_raised: Option<f64>,
@@ -238,7 +238,7 @@ pub struct FundingDetails {
     pub investing_individuals: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CompanyResponse {
     /// See https://docs.peopledatalabs.com/docs/example-company-record for more information.
     pub status: Option<i32>,
@@ -302,7 +302,7 @@ pub struct BulkCompanyEnrichResponse {
     pub likelihood: Option<i32>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CleanCompanyResponse {
     /// See https://docs.peopledatalabs.com/docs/output-response-cleaner-apis#company-cleaner-api-response for more information.
     pub status: i32,

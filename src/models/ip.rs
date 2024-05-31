@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{models::common::BaseParams, PDLError};
 
-#[derive(Debug, Serialize, Deserialize, Default)]
+#[derive(Debug, Serialize, Deserialize, Default, Clone)]
 pub struct IPBaseParams {
     /// IP that is used as the seed for enrichment
     #[serde(rename = "ip", default)]
@@ -21,7 +21,7 @@ pub struct IPBaseParams {
     pub return_if_unmatched: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -39,13 +39,13 @@ impl IPParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPResponse {
     pub status: i32,
     pub data: IPResult,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPResult {
     pub ip: IPInfo,
     pub company: Option<IPCompany>,
@@ -53,14 +53,14 @@ pub struct IPResult {
     pub dataset_version: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPInfo {
     pub address: String,
     pub metadata: Option<IPMetadata>,
     pub location: Option<IPLocation>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPMetadata {
     pub version: i32,
     pub mobile: bool,
@@ -73,7 +73,7 @@ pub struct IPMetadata {
     pub asn_domain: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPLocation {
     pub name: String,
     pub locality: String,
@@ -86,7 +86,7 @@ pub struct IPLocation {
     pub timezone: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPCompany {
     pub confidence: String,
     pub id: String,
@@ -100,7 +100,7 @@ pub struct IPCompany {
     pub tags: Vec<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPCompanyLocation {
     pub name: String,
     pub locality: String,
@@ -114,7 +114,7 @@ pub struct IPCompanyLocation {
     pub geo: String,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct IPPerson {
     pub confidence: String,
     pub job_title_subrole: String,

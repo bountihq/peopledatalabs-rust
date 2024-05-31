@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{models::common::BaseParams, PDLError};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AutocompleteBaseParams {
     /// Field that autocomplete will be calculated for
     #[serde(rename = "field", default)]
@@ -15,7 +15,7 @@ pub struct AutocompleteBaseParams {
     pub titlecase: Option<bool>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AutocompleteParams {
     #[serde(flatten)]
     pub base_params: Option<BaseParams>,
@@ -32,7 +32,7 @@ impl AutocompleteParams {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AutocompleteResponse {
     /// See https://docs.peopledatalabs.com/docs/output-response-autocomplete-api for more information
     pub status: i32,
@@ -40,7 +40,7 @@ pub struct AutocompleteResponse {
     pub fields: Option<Vec<String>>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Meta {
     pub website: Option<String>,
     pub location_name: Option<String>,
@@ -56,7 +56,7 @@ pub struct Meta {
     pub role: Option<String>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct AutocompleteResult {
     /// The plain text name of this Autocomplete API suggestion.
     /// The prefix of this field will match the value of the text input parameter.
