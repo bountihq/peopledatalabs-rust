@@ -52,7 +52,7 @@ impl Person {
     pub fn search(&self, params: SearchParams) -> Result<SearchPersonResponse, PDLError> {
         params.validate()?;
         self.client
-            .get::<SearchPersonResponse, SearchParams>(PERSON_SEARCH_PATH, params)
+            .post::<SearchPersonResponse, SearchParams>(PERSON_SEARCH_PATH, params)
     }
 
     pub fn retrieve(
